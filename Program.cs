@@ -2,19 +2,19 @@
 
 namespace JimmyLinq
 {
-    enum Critics
+    public enum Critics
     {
         MuddyCritic,
         RottenTornadoes
     }
 
-    enum PriceRange
+    public enum PriceRange
     {
         Cheap,
         Expensive
     }
 
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

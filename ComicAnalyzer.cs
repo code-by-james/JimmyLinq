@@ -5,11 +5,11 @@ using System.Text;
 
 namespace JimmyLinq
 {
-    class ComicAnalyzer
+    public static class ComicAnalyzer
     {
-        private static PriceRange CalculatePriceRange(Comic comic)
+        private static PriceRange CalculatePriceRange(Comic comic, IReadOnlyDictionary<int, decimal> prices)
         {
-            if (Comic.Prices[comic.Issue] < 100)
+            if (prices[comic.Issue] < 100)
             {
                 return PriceRange.Cheap;
             }
@@ -24,7 +24,7 @@ namespace JimmyLinq
             IEnumerable<IGrouping<PriceRange, Comic>> grouped =
                 from comic in comics
                 orderby prices[comic.Issue]
-                group comic by CalculatePriceRange(comic) into priceGroup
+                group comic by CalculatePriceRange(comic, prices) into priceGroup
                 select priceGroup;
 
             return grouped;
